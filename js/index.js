@@ -24,6 +24,7 @@ window.addEventListener('DOMContentLoaded', () => {
   start.addEventListener('click', function (e) {
     document.querySelector('#quizBlock').style.display = 'block';
     start.style.display = 'none';
+    
   });
   // quizArray QUESTIONS & ANSWERS
   // q = QUESTION, o = OPTIONS, a = CORRECT ANSWER
@@ -44,6 +45,17 @@ window.addEventListener('DOMContentLoaded', () => {
       o: ['Sydney', 'Canberra', 'Melbourne', 'Perth'],
       a: 1,
     },
+    //**new questions**
+    {
+      q: 'Which country has the longest coastline in the world?',
+      o: ['Rusia', 'Indonesia', 'Australia', 'Canada'],
+      a: 3,
+    },
+    {
+      q: 'What is the Worlds Smallest Country?',
+      o: ['Lichtenstein', 'Vatican City', 'Monaco', 'Luxembourg'],
+      a: 1,
+    },
   ];
 
   // function to Display the quiz questions and answers from the object
@@ -62,7 +74,8 @@ window.addEventListener('DOMContentLoaded', () => {
       quizWrap.innerHTML = quizDisplay;
     });
   };
-
+  
+  const scoreQuizzContainer = document.querySelector("#score");
   // Calculate the score
   const calculateScore = () => {
     let score = 0;
@@ -71,20 +84,66 @@ window.addEventListener('DOMContentLoaded', () => {
         //highlight the li if it is the correct answer
         let li = `li_${index}_${i}`;
         let r = `radio_${index}_${i}`;
-        liElement = document.querySelector('#' + li);
-        radioElement = document.querySelector('#' + r);
+        liElement = document.querySelector("#" + li);
+        radioElement = document.querySelector("#" + r);
 
         if (quizItem.a == i) {
           //change background color of li element here
+          liElement.style.backgroundColor = "lightgreen";
+          
         }
 
-        if (radioElement.checked) {
+        if (radioElement.checked && quizItem.a == i) {
           // code for task 1 goes here
+
+          score++;
+        } else if (radioElement.checked && quizItem.a != i) {
+          liElement.style.backgroundColor = "red";
         }
       }
+      //scoreQuizzContainer count the correct answers
+      scoreQuizzContainer.innerHTML = `Your score is ${score} out of ${quizArray.length}`;
+
     });
   };
 
   // call the displayQuiz function
   displayQuiz();
+  const submitQuizz = document.querySelector("#btnSubmit");
+  submitQuizz.addEventListener("click", function (e) {
+    calculateScore();
+    submitQuizz.style.display = "none";
+  });
+
+  // Reset Quizz - (Reset button)
+  const resetQuizz = document.querySelector("#btnReset");
+  resetQuizz.addEventListener("click",
+    function newQuizz() {
+      window.location.assign("index.html");
+    });
+
+  
+  //**********Countdown timer**************
+
+  //1. set the time we'r counting down to
+  let countdownTime = 60;
+
+  //2. counter
+  let countertime =setInterval(timer, 1000); //1000 will  run it every 1 second
+
+ //3. function
+  function timer() {
+    countdownTime--;
+        if (countdownTime <= 0) {
+    clearInterval(countertime);
+    //countertime ended, do something here
+    document.querySelector("#time").innerHTML = "00:00";
+    calculateScore();
+    submitQuizz.style.display = "none";
+    }
+    //code for showing the number of seconds left
+        if (countdownTime>0) {
+     document.querySelector("#time").innerHTML = `00:${countdownTime}`;
+  }
+}
 });
