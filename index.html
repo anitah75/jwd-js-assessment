@@ -7,6 +7,8 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <link rel="stylesheet" href="./CSS/style.css">
+
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -17,12 +19,12 @@
     <title>Quiz</title>
   </head>
   <body>
-    <div class="container m-5" id="start">
-      <div class="card" style="width: 18rem">
-        <div class="card-body">
-          <h5 class="card-title">Test your knowledge</h5>
-          <p class="card-text">Some quick description about the quiz .</p>
-          <a class="btn btn-primary">Start</a>
+    <div class="container m-5 " id="start">
+      <div class="card">
+        <div class="card-body ">
+          <h5 class="card-title text-center">&#x1F3C1 Test your knowledge	</h5>
+          <p class="card-text">You only have one minute to answer the test</p>
+          <a class="btn btn-primary " id="start">Start</a>
         </div>
       </div>
     </div>
@@ -30,7 +32,7 @@
     <!-- (B) QUIZ CONTAINER -->
     <div class="container" id="quizBlock" style="display: none">
       <div class="mb-5">
-        <h2>Test your knowledge</h2>
+        <h2 class= "text-center strong">Test your knowledge</h2>
         -> Time remaining: <span id="time">01:00</span>
       </div>
       <div id="quizWrap"></div>

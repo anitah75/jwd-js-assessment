@@ -19,12 +19,16 @@
       5. Add a countdown timer - when the time is up, end the quiz, display the score and highlight the correct answers
 *************************** */
 
+
 window.addEventListener('DOMContentLoaded', () => {
   const start = document.querySelector('#start');
   start.addEventListener('click', function (e) {
     document.querySelector('#quizBlock').style.display = 'block';
     start.style.display = 'none';
-    
+    //timer only start running after you push button Start
+    countdownTime = 60;
+     
+        
   });
   // quizArray QUESTIONS & ANSWERS
   // q = QUESTION, o = OPTIONS, a = CORRECT ANSWER
@@ -90,8 +94,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (quizItem.a == i) {
           //change background color of li element here
           liElement.style.backgroundColor = "lightgreen";
-          
-        }
+          }
 
         if (radioElement.checked && quizItem.a == i) {
           // code for task 1 goes here
@@ -112,29 +115,30 @@ window.addEventListener('DOMContentLoaded', () => {
   const submitQuizz = document.querySelector("#btnSubmit");
   submitQuizz.addEventListener("click", function (e) {
     calculateScore();
-    submitQuizz.style.display = "none";
+    submitQuizz.style.display = "none";  //After button is clicked it desapears
+    countdownTime = 0;  //timer in 0 after submit the quiz
   });
 
   // Reset Quizz - (Reset button)
   const resetQuizz = document.querySelector("#btnReset");
   resetQuizz.addEventListener("click",
     function newQuizz() {
-      window.location.assign("index.html");
+    window.location.reload();
     });
 
-  
+      
   //**********Countdown timer**************
 
   //1. set the time we'r counting down to
   let countdownTime = 60;
-
-  //2. counter
+  
+  //2. counter y reset timer
   let countertime =setInterval(timer, 1000); //1000 will  run it every 1 second
-
+  
  //3. function
   function timer() {
     countdownTime--;
-        if (countdownTime <= 0) {
+       if (countdownTime <= 0) {
     clearInterval(countertime);
     //countertime ended, do something here
     document.querySelector("#time").innerHTML = "00:00";
@@ -142,8 +146,9 @@ window.addEventListener('DOMContentLoaded', () => {
     submitQuizz.style.display = "none";
     }
     //code for showing the number of seconds left
-        if (countdownTime>0) {
-     document.querySelector("#time").innerHTML = `00:${countdownTime}`;
-  }
-}
-});
+    else{(countdownTime>0)
+      document.querySelector("#time").innerHTML = `00:${countdownTime}`;
+   }
+         
+ }
+ });

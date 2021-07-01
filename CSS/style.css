@@ -1,0 +1,41 @@
+body{
+    vertical-align: center;
+    background-repeat: no-repeat;
+    background-color: #d0edee8a;
+    background-image: linear-gradient(0deg, #e9e8ee5d 0%, #a2d1d0 80%);
+}
+.list-group{
+    box-shadow: 10px 5px 5px rgba(56, 44, 44, 0.318);
+}
+.list-group-item{
+    background-color: rgba(199, 186, 186, 0.318);
+}
+
+.card{
+    box-shadow: 10px 5px 5px rgba(53, 49, 49, 0.318);
+    width: 18rem;
+    
+}
+
+.card-title {
+    color: rgb(24, 110, 144);
+   font-weight: bolder;
+}
+
+#start{
+    font-weight: bold;
+    color:white;
+    border-radius: 15px;
+}
+
+.card-text{
+    color:rgb(15, 14, 9);
+}
+
+.btn{
+    background-color:rgb(24, 110, 144) !important; 
+    align-items: center !important;
+    border: white !important;
+    padding: none !important;
+    
+}
